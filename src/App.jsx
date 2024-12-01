@@ -29,17 +29,17 @@ function App() {
       })
       .then(res=>res.json())
       .then(data=>{
-        console.log('inside post response', data)
+        console.log(data);
+
+        const newUser = [...users, data]
+        setUsers(newUser)
+        form.reset()
       })
   }
 
   return (
     <>
-      <h1>Users management{users.length}</h1>
-      {
-        users.map(user=><p>{user.id}{user.name}{user.email}</p>)
-      }
-
+    
       <hr />
       <form action="" onSubmit={handleAddUser}>
         <input type="text" name='name' id='' />
@@ -48,6 +48,12 @@ function App() {
         <br />
         <input type="submit" value="Add User" />
       </form>
+      <hr />
+        <h1>Users management{users.length}</h1>
+        {
+          users.map(user=><p>{user.name}{user.email}</p>)
+        }
+  
     
     </>
   )
